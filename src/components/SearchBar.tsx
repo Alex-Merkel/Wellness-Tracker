@@ -1,27 +1,14 @@
-import Modal from './Modal';
 import { useState, useRef } from 'react';
 import { server_calls } from '../api/server';
 
-
-interface FoodInfo {
-  food_name: string,
-  calories: number,
-  serving_size: number,
-  total_fat: number,
-  saturated_fat: number,
-  cholesterol: number,
-  sodium: number,
-  total_carbohydrate: number,
-  dietary_fiber: number,
-  sugars: number,
-  protein: number
+interface SearchBarProps {
+    onAddFood: (info: any) => void;
 }
 
 
-const SearchBar = () => {
-  const [foodInfo, setFoodInfo] = useState<FoodInfo | null>(null)
+const SearchBar = ({ onAddFood }: SearchBarProps) => {
+ 
   const [selectedFood, setSelectedFood] = useState("")
-  const [showModal, setShowModal] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -29,35 +16,30 @@ const SearchBar = () => {
     const food_name = selectedFood
     const result = await server_calls.getNutritionInfo(food_name)
     console.log(result)
-    setFoodInfo(result.foods[0])
-    console.log(foodInfo)
-    setShowModal(true)
-    console.log(showModal)
+    onAddFood(result.foods[0])
   }
 
-  const handleCloseModal = () => {
-    setShowModal(false);
-    setFoodInfo(null)
-  }
-
-
+ 
   return (
     <div>
         <div className='flex place-items-center h-screen'>
             <br />
-            <form onSubmit={onSubmit}>
-                Food: <input value={selectedFood} onChange={e => setSelectedFood(e.target.value)} ref={inputRef} type="text" />
-                <button type="submit">Add</button>
+            <form onSubmit={onSubmit} className='text-xl'>
+                <h3 id='SearchFormText' className='text-center text-white font-bold text-2xl'>Search for a food item:</h3>
+                <br />
+                <input 
+                    value={selectedFood} onChange={e => setSelectedFood(e.target.value)} 
+                    ref={inputRef} type="text" placeholder="Enter food here..."
+                />
+                <button 
+                    type="submit" 
+                    className='ml-2 px-2 bg-green-600 border-2 border-black
+                    hover:border-white'
+                >
+                    Add
+                </button>
             </form>
         </div>
-        {showModal && (
-            <div className='flex place-items-center h-screen'>
-                {foodInfo && (
-                    <Modal showModal={true} onClose={handleCloseModal} foodInfo={foodInfo}>
-                    </Modal>
-                )}
-            </div>
-        )}  
     </div>
   );
 }   

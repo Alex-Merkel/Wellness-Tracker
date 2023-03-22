@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import Navbar from './components/Navbar'
 import Food from './pages/Food'
 import './App.css'
+import Journal from './pages/Journal'
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/food" element={<Food />} />
+          <Route path="/journal" element={<Journal />} />
         </Routes>
     </HashRouter>
   )

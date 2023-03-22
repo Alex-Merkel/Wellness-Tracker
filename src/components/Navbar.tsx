@@ -50,13 +50,13 @@ function Navbar() {
                             Food
                         </Link>
                         <Link
-                            to='#'
+                            to='/journal'
                             onClick={ clicked }
                             className='px-8 py-4 bg-green-500 text-green-200
                             justify-center hover:text-white flex place-items-center
                             rounded-full'
                         >
-                            List/Cart
+                            Journal
                         </Link>
                     </div>
                 </div>
