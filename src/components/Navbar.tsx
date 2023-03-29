@@ -1,8 +1,12 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useAuth0 } from '@auth0/auth0-react'
+import LoginButton from '../authentication/Login';
+import LogoutButton from '../authentication/Logout';
 
 function Navbar() {
     const [isVisible, setIsVisible] = useState(false);
+    const { isAuthenticated } = useAuth0()
 
 
     const dropDown = () => {
@@ -15,7 +19,7 @@ function Navbar() {
 
 
     return (
-        <nav className="flex items-center justify-between flex-wrap bg-green-600 p-6 position-fixed">
+        <nav className="flex items-center justify-between flex-wrap bg-green-600 p-6 fixed top-0 w-full">
             <div className="flex items-center flex-shrink-0 text-white">
                 <Link to="/" className="font-semibold text-xl tracking-tight">Health</Link>
             </div>
@@ -58,11 +62,19 @@ function Navbar() {
                         >
                             Journal
                         </Link>
+                        <button
+                            onClick={ clicked }
+                            className='px-8 py-4 bg-green-500 text-green-200
+                            justify-center hover:text-white flex place-items-center
+                            rounded-full'
+                        >
+                            <LoginButton/>
+                            <LogoutButton/>
+                        </button>
                     </div>
                 </div>
-            ) : (
-                <></>
-            )}
+            ) : null
+            }
         </nav>
     )
 }
