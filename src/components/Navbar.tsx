@@ -1,12 +1,10 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useAuth0 } from '@auth0/auth0-react'
 import LoginButton from '../authentication/Login';
 import LogoutButton from '../authentication/Logout';
 
 function Navbar() {
     const [isVisible, setIsVisible] = useState(false);
-    const { isAuthenticated } = useAuth0()
 
 
     const dropDown = () => {

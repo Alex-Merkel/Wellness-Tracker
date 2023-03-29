@@ -8,7 +8,6 @@ import Journal from './pages/Journal'
 import { disableReactDevTools } from '@fvilers/disable-react-devtools';
 import { Auth0Provider, withAuthenticationRequired, useAuth0 } from '@auth0/auth0-react'
 import Profile from './authentication/Profile'
-import LoginButton from './authentication/Login'
 
 
 if (process.env.NODE_ENV === 'production') {
