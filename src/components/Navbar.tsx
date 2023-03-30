@@ -60,6 +60,15 @@ function Navbar() {
                         >
                             Journal
                         </Link>
+                        <Link
+                            to='/account'
+                            onClick={ clicked }
+                            className='px-8 py-4 bg-green-500 text-green-200
+                            justify-center hover:text-white flex place-items-center
+                            rounded-full'
+                        >
+                            Account
+                        </Link>
                         <button
                             onClick={ clicked }
                             className='px-8 py-4 bg-green-500 text-green-200
