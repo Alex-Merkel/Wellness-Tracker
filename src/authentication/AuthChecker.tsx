@@ -1,20 +1,19 @@
-// import { Auth0Provider } from "@auth0/auth0-react";
+import { Auth0Provider, withAuthenticationRequired } from '@auth0/auth0-react'
+import { useNavigate } from 'react-router-dom'
 
-// const AuthChecker = () => {
-//   return (
-//     <div>
-//         const auth0Config: Auth0ProviderOptions = {
-//             domain: "dev-rorjkfiimt8iqckg.us.auth0.com",
-//             clientId: "Mu6n2InZgyAmJzTiN9ofS6630k3TfODW",
-//             authorizationParams={{
-//                 redirect_uri: window.location.origin
-//             }}
-//             // redirectUri: window.location.origin,
-//             // appOrigin: "http://localhost:5173"
-//         }
-      
-//     </div>
-//   )
-// }
-
-// export default AuthChecker
+export const ProtectedRoute = ({ component, ...args }: any) => {
+    const Component = withAuthenticationRequired(component, args);
+    return <Component />;
+  };
+  
+  export const Auth0ProviderWithRedirectCallback = ({ children, ...props }: any) => {
+    const navigate = useNavigate();
+    const onRedirectCallback = (appState: any) => {
+      navigate((appState && appState.returnTo) || window.location.pathname);
+    };
+    return (
+      <Auth0Provider onRedirectCallback={onRedirectCallback} {...props}>
+        {children}
+      </Auth0Provider>
+    );
+  };

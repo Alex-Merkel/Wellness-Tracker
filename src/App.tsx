@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route, useNavigate } from 'react-router-dom'
+import { HashRouter, Routes, Route } from 'react-router-dom'
 // import { useState } from 'react'
 import Home from './pages/Home'
 import Navbar from './components/Navbar'
@@ -6,8 +6,8 @@ import Food from './pages/Food'
 import './App.css'
 import Journal from './pages/Journal'
 import { disableReactDevTools } from '@fvilers/disable-react-devtools';
-import { Auth0Provider, withAuthenticationRequired, useAuth0 } from '@auth0/auth0-react'
 import Profile from './authentication/Profile'
+import { Auth0ProviderWithRedirectCallback, ProtectedRoute } from './authentication/AuthChecker'
 
 
 if (process.env.NODE_ENV === 'production') {
@@ -15,23 +15,6 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // type AppProps = {};
-
-const ProtectedRoute = ({ component, ...args }: any) => {
-  const Component = withAuthenticationRequired(component, args);
-  return <Component />;
-};
-
-const Auth0ProviderWithRedirectCallback = ({ children, ...props }: any) => {
-  const navigate = useNavigate();
-  const onRedirectCallback = (appState: any) => {
-    navigate((appState && appState.returnTo) || window.location.pathname);
-  };
-  return (
-    <Auth0Provider onRedirectCallback={onRedirectCallback} {...props}>
-      {children}
-    </Auth0Provider>
-  );
-};
 
 
 function App(): any {
