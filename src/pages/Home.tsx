@@ -1,6 +1,5 @@
 import Background from '../assets/images/sunsetpic.jpg'
 import LoginButton from '../authentication/Login'
-import Profile from '../authentication/Profile'
 
 function Home() {
   return (

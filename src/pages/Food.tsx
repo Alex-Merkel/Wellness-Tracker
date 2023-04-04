@@ -21,6 +21,7 @@ const Food = () => {
     setFoodInfo(null)
     location.reload()
   }
+  
     return (
       <div style={{ backgroundImage: `url(${ Background })` }} className='flex flex-row justify-center mx-auto bg-cover bg-fixed'>
           <SearchBar onAddFood={handleAddFood} />
