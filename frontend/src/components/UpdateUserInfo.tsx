@@ -1,20 +1,22 @@
 import { useState } from 'react';
 
-type UserInfoProps = {
+type UpdateUserInfoProps = {
   onClose: () => void;
   email: string;
+  firstName: string;
+  lastName: string;
 };
 
 const baseURL = "http://localhost:5000/"
 
-const UserInfo = (props: UserInfoProps) => {
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
+const UpdateUserInfo = (props: UpdateUserInfoProps) => {
+    const [firstName, setFirstName] = useState(props.firstName);
+    const [lastName, setLastName] = useState(props.lastName);
 
-    const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const handleSave = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         event.preventDefault()
         try {
-            const res = await fetch(`${baseURL}adduser`, {
+            const res = await fetch(`${baseURL}updateuser`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -25,10 +27,8 @@ const UserInfo = (props: UserInfoProps) => {
                     emailAddress: props.email
                 })
             });
-            const data = await res.json();
+            // const data = await res.json(); GET RID OF?
             if (res.ok) {
-                setFirstName(data.first_name);
-                setLastName(data.last_name);
                 props.onClose();
                 location.reload()
             }
@@ -37,14 +37,25 @@ const UserInfo = (props: UserInfoProps) => {
         }
     }
 
+    const handleCancel = () => {
+        props.onClose()
+        location.reload()
+      };
+
+
     return (
         <>
             <div className="fixed top-0 left-0 right-0 bottom-0 bg-gray-900 bg-opacity-50">
                 <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-5 rounded-lg">
-                    <p className='flex justify-center text-3xl'>It looks like you're new to our site, welcome!</p>
-                    <p className='flex justify-center text-xl mt-4'>Please enter your first and last name below to continue.</p>
-                    <div className="mb-4 my-6">
-                    <label className="block text-lg text-gray-700 font-bold mb-2" htmlFor="firstName">
+                    <p className='flex justify-center text-gray-700 text-3xl'
+                    >
+                        You can update your information below
+                    </p>
+                    <p className='flex justify-center text-lg my-4 text-gray-700'>
+                    (Select save to submit or select cancel to discard changes and return to your account page)
+                    </p>
+                    <div className="mb-4">
+                    <label className="block text-gray-700 font-bold mb-2" htmlFor="firstName">
                         First Name:
                     </label>
                     <input
@@ -56,7 +67,7 @@ const UserInfo = (props: UserInfoProps) => {
                     />
                     </div>
                     <div className="mb-4">
-                    <label className="block text-lg text-gray-700 font-bold mb-2" htmlFor="lastName">
+                    <label className="block text-gray-700 font-bold mb-2" htmlFor="lastName">
                         Last Name:
                     </label>
                     <input
@@ -69,12 +80,20 @@ const UserInfo = (props: UserInfoProps) => {
                     </div>
                     <div className="flex justify-center">
                         <button
-                            className="px-8 py-4 mt-4 bg-green-500 text-green-200
+                            className="px-8 py-4 m-3 bg-green-500 text-green-200
                             justify-center hover:text-white flex place-items-center
                             rounded-full"
-                            onClick={handleSubmit}
+                            onClick={handleSave}
                         >
-                            Submit
+                            Save
+                        </button>
+                        <button
+                            className="px-8 py-4 m-3 bg-green-500 text-green-200
+                            justify-center hover:text-white flex place-items-center
+                            rounded-full"
+                            onClick={handleCancel}
+                        >
+                            Cancel
                         </button>
                     </div>
                 </div>
@@ -83,4 +102,4 @@ const UserInfo = (props: UserInfoProps) => {
     );
 };
 
-export default UserInfo;
+export default UpdateUserInfo;

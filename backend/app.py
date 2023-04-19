@@ -36,32 +36,35 @@ def get_user():
 
     
 
-# @app.route('/updateuser', methods=['PUT'])
-# def update_user():
-#     try:
-#         # Get the user data from the request
-#         user_data = request.json
+@app.route('/updateuser', methods=['PUT', 'POST'])
+def update_user():
+    # Get the user data from the request
+    user_data = request.json
 
-#         # Check if user exists in the database
-#         email = user_data['emailAddress']
-#         user = User.query.filter_by(email_address=email).first()
-#         if not user:
-#             return "User not found"
+    # Check if user exists in the database
+    email_address = user_data['emailAddress']
+    
+    user = User.query.filter_by(email_address=email_address).first()
 
-#         # Update first name and/or last name if provided in the request
-#         if 'firstName' in user_data:
-#             user.first_name = user_data['firstName']
-#         if 'lastName' in user_data:
-#             user.last_name = user_data['lastName']
+    if user is None:
+        return jsonify({'success': False, 'error': 'User not found'})
 
-#         # Commit the transaction
-#         db.session.commit()
+    # Update first name and/or last name if provided in the request
+    if 'firstName' in user_data:
+        user.first_name = user_data['firstName']
+    if 'lastName' in user_data:
+        user.last_name = user_data['lastName']
 
-#         return "User updated successfully!"
-#     except Exception as e:
-#         # Rollback the transaction in case of an error
-#         db.session.rollback()
-#         return str(e), 500
+    try:
+        # Commit the transaction
+        db.session.commit()
+        return jsonify({'success': True})
+    except Exception as e:
+        # Rollback the transaction on error
+        db.session.rollback()
+        return jsonify({'success': False, 'error': str(e)})
+
+
 
 @app.route('/adduser', methods=['POST'])
 def add_user():
@@ -81,6 +84,7 @@ def add_user():
     db.session.commit()
 
     return jsonify({'message': 'User added successfully'})
+
 
 
 # Running app
