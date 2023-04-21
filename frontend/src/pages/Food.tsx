@@ -23,7 +23,7 @@ const Food = () => {
   }
   
     return (
-      <div style={{ backgroundImage: `url(${ Background })` }} className='flex flex-row justify-center mx-auto bg-cover bg-fixed'>
+      <div style={{ backgroundImage: `url(${ Background })`, height: '100vh' }} className='flex flex-row justify-center mx-auto bg-cover bg-fixed'>
           <SearchBar onAddFood={handleAddFood} />
           {showModal && foodInfo &&
             <Modal showModal={true} onClose={handleCloseModal} foodInfo={foodInfo} />

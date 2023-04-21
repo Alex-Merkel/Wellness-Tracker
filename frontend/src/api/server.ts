@@ -1,9 +1,7 @@
 
-
-
 export const server_calls = {
-    get: async (food_name: string) => {
-        const response = await fetch(`https://trackapi.nutritionix.com/v2/search/instant?query=${ food_name }&limit=10`, {
+    getFoods: async (queryFood: string) => {
+        const response = await fetch(`https://trackapi.nutritionix.com/v2/search/instant?query=${ queryFood }`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -18,6 +16,7 @@ export const server_calls = {
         return data
     },
 
+    
     getNutritionInfo: async (food_name: string) => {
         const response = await fetch(`https://trackapi.nutritionix.com/v2/natural/nutrients?query=${ food_name }`, {
             method: 'POST',
