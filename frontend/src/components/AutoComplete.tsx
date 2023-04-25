@@ -10,7 +10,7 @@ const AutoComplete = ({ foods, onSelectFood }: AutoCompleteProps) => {
 
   return (
     <ul className="bg-white divide-y rounded-md shadow-lg">
-      {foods.map((food, index) => (
+      {foods.slice(0,10).map((food, index) => (
         <li 
           key={index}
           onClick={() => onSelectFood(food)}

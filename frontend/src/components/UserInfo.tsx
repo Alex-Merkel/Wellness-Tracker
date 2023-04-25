@@ -69,9 +69,9 @@ const UserInfo = (props: UserInfoProps) => {
                     </div>
                     <div className="flex justify-center">
                         <button
-                            className="px-8 py-4 mt-4 bg-green-500 text-green-200
-                            justify-center hover:text-white flex place-items-center
-                            rounded-full"
+                            className="px-8 py-4 bg-green-500 text-green-200
+                            justify-center hover:text-white hover:bg-green-800
+                            flex place-items-center rounded-full"
                             onClick={handleSubmit}
                         >
                             Submit

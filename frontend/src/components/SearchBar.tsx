@@ -54,31 +54,29 @@ const SearchBar = ({ onAddFood }: SearchBarProps) => {
   
 
   return (
-    <div className="sticky mt-44">
-      <form
-        onSubmit={handleSubmit}
-        className="text-xl"
-      >
+    <div className="flex flex-col items-center sticky -mt-8">
+      <form onSubmit={handleSubmit} className="text-xl">
         <h3 id="SearchFormText" className="mb-6 text-center text-white font-bold text-3xl">
-          Search for a food item:
+          Search for food info:
         </h3>
         <div className="flex items-center justify-center">
-            <input
-                className="rounded-full shadow-lg p-1 pl-4 mb-1"
-                value={selectedFood}
-                onChange={(e) => setSelectedFood(e.target.value)}
-                type="text"
-                placeholder="Enter food here..."
-                onKeyUp={(e) => handleAutoComplete(e.currentTarget.value)}
-            />
-            <button type="submit" className="ml-2 px-2 bg-green-600 border-2 border-black hover:border-white">
-                Add
-            </button>
+          <input
+            className="rounded-full shadow-lg p-1 pl-4 mb-1"
+            value={selectedFood}
+            onChange={(e) => setSelectedFood(e.target.value)}
+            type="text"
+            placeholder="Enter food here..."
+            onKeyUp={(e) => handleAutoComplete(e.currentTarget.value)}
+          />
+          <button type="submit" className="ml-2 px-2 rounded-full bg-green-600 border-2 border-black hover:border-white hover:text-white">
+            Add
+          </button>
         </div>
         <AutoComplete foods={autoCompleteFoods} onSelectFood={handleSelectFood} />
       </form>
     </div>
   );
+  
 };
 
 export default SearchBar;

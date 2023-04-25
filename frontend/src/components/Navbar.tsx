@@ -37,8 +37,8 @@ function Navbar() {
                             to='/'
                             onClick={ clicked }
                             className='px-8 py-4 bg-green-500 text-green-200
-                            justify-center hover:text-white flex place-items-center
-                            rounded-full'
+                            justify-center hover:text-white hover:bg-green-800
+                            flex place-items-center rounded-full'
                         >
                             Home
                         </Link>
@@ -46,8 +46,8 @@ function Navbar() {
                             to='/food'
                             onClick={ clicked }
                             className='px-8 py-4 bg-green-500 text-green-200
-                            justify-center hover:text-white flex place-items-center
-                            rounded-full'
+                            justify-center hover:text-white hover:bg-green-800
+                            flex place-items-center rounded-full'
                         >
                             Food
                         </Link>
@@ -55,8 +55,8 @@ function Navbar() {
                             to='/journal'
                             onClick={ clicked }
                             className='px-8 py-4 bg-green-500 text-green-200
-                            justify-center hover:text-white flex place-items-center
-                            rounded-full'
+                            justify-center hover:text-white hover:bg-green-800
+                            flex place-items-center rounded-full'
                         >
                             Journal
                         </Link>
@@ -64,16 +64,16 @@ function Navbar() {
                             to='/account'
                             onClick={ clicked }
                             className='px-8 py-4 bg-green-500 text-green-200
-                            justify-center hover:text-white flex place-items-center
-                            rounded-full'
+                            justify-center hover:text-white hover:bg-green-800
+                            flex place-items-center rounded-full'
                         >
                             Account
                         </Link>
                         <button
                             onClick={ clicked }
                             className='px-8 py-4 bg-green-500 text-green-200
-                            justify-center hover:text-white flex place-items-center
-                            rounded-full'
+                            justify-center hover:text-white hover:bg-green-800
+                            flex place-items-center rounded-full'
                         >
                             <LoginButton/>
                             <LogoutButton/>

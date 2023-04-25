@@ -80,17 +80,17 @@ const UpdateUserInfo = (props: UpdateUserInfoProps) => {
                     </div>
                     <div className="flex justify-center">
                         <button
-                            className="px-8 py-4 m-3 bg-green-500 text-green-200
-                            justify-center hover:text-white flex place-items-center
-                            rounded-full"
+                            className="px-8 py-4 bg-green-500 text-green-200
+                            justify-center hover:text-white hover:bg-green-800
+                            flex place-items-center rounded-full"
                             onClick={handleSave}
                         >
                             Save
                         </button>
                         <button
-                            className="px-8 py-4 m-3 bg-green-500 text-green-200
-                            justify-center hover:text-white flex place-items-center
-                            rounded-full"
+                            className="px-8 py-4 bg-green-500 text-green-200
+                            justify-center hover:text-white hover:bg-green-800
+                            flex place-items-center rounded-full"
                             onClick={handleCancel}
                         >
                             Cancel

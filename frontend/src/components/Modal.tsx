@@ -56,33 +56,41 @@ const Modal = ({ showModal, onClose, onAddToGrid, foodInfo }: ModalProps ) => {
             >
 
                 <div className="w-full flex flex-col">
-                    <div className="flex justify-between">
-                        <img src={ foodInfo.photo.thumb } alt={foodInfo.food_name} className="h-32 w-44"/>
-                        <p>Serving Size: <br /> { foodInfo.serving_qty }</p>
-                        <p className="flex justify-center items-center h-10 w-8 m-2 bg-slate-300 rounded hover:bg-slate-800 text-white"
-                        onClick={ handleClose }>
-                            X
-                        </p>
+                    <div className="flex justify-center">
+                        <div className="flex items-center">
+                            <h2 className="capitalize font-bold text-3xl w-32 mr-24">{foodInfo.food_name}</h2>
+                            <img src={foodInfo.photo.thumb} alt={foodInfo.food_name} className="h-32 w-32 -mr-12"/>
+                        </div>
                     </div>
-                    <h2 className="capitalize ml-16">{ foodInfo.food_name }</h2>
-                    <br />
-                    <br />
-                    <div className="grid grid-cols-3 grid-rows-3 gap-y-8 text-center">
-                        <p>Calories: <br /> { foodInfo.nf_calories }</p>
-                        <p>Total Fat: <br /> { foodInfo.nf_total_fat }g</p>
-                        <p>Saturated Fat: <br /> { foodInfo.nf_saturated_fat }g</p>
-                        <p>Cholesterol: <br /> { foodInfo.nf_cholesterol }mg</p>
-                        <p>Sodium: <br /> { foodInfo.nf_sodium }mg</p>
-                        <p>Total Carbohydrate: <br /> { foodInfo.nf_total_carbohydrate }g</p>
-                        <p>Dietary Fiber: <br /> { foodInfo.nf_dietary_fiber }g</p>
-                        <p>Sugars: <br /> { foodInfo.nf_sugars }g</p>
-                        <p>Protein: <br /> { foodInfo.nf_protein }g</p>
+                    <div className="my-8 grid grid-cols-3 grid-rows-3 gap-y-8 text-center">
+                        <p>Calories: <br /> {foodInfo.nf_calories}</p>
+                        <p>Total Fat: <br /> {foodInfo.nf_total_fat}g</p>
+                        <p>Saturated Fat: <br /> {foodInfo.nf_saturated_fat}g</p>
+                        <p>Cholesterol: <br /> {foodInfo.nf_cholesterol}mg</p>
+                        <p>Sodium: <br /> {foodInfo.nf_sodium}mg</p>
+                        <p>Total Carbohydrate: <br /> {foodInfo.nf_total_carbohydrate}g</p>
+                        <p>Dietary Fiber: <br /> {foodInfo.nf_dietary_fiber}g</p>
+                        <p>Sugars: <br /> {foodInfo.nf_sugars}g</p>
+                        <p>Protein: <br /> {foodInfo.nf_protein}g</p>
                     </div>
-                    <div className="modal-footer">
-                        <button onClick={handleAddToGrid}>Add to Grid</button>
-                        <button onClick={onClose}>Cancel</button>
+                    <div className="flex justify-center my-8">
+                        <button
+                            className="px-8 py-4 bg-green-500 text-green-200
+                            justify-center hover:text-white hover:bg-green-800
+                            flex place-items-center rounded-full"
+                            onClick={handleAddToGrid}
+                        >
+                            Add to Grid
+                        </button>
+                        <button
+                            className="mx-10 hover:bg-green-800 px-8 py-4 bg-green-500 text-green-200
+                            justify-center hover:text-white flex place-items-center
+                            rounded-full"
+                            onClick={onClose}
+                        >
+                            Cancel
+                        </button>
                     </div>
-                    
                 </div>
             </div>
         </div>
