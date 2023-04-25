@@ -19,7 +19,7 @@ function Navbar() {
     return (
         <nav className="flex items-center justify-between flex-wrap bg-green-600 p-6 fixed top-0 w-full">
             <div className="flex items-center flex-shrink-0 text-white">
-                <Link to="/" className="font-semibold text-2xl tracking-tight">Health</Link>
+                <Link to="/" className="font-semibold text-2xl tracking-tight">Wellness Tracker</Link>
             </div>
             <div className="block">
                 <button

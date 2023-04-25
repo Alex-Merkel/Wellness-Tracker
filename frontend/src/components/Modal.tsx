@@ -1,27 +1,45 @@
-
+import { useState } from "react";
 
 interface ModalProps {
     showModal?: boolean;
     onClose: () => void;
+    onAddToGrid: (food: any) => void;
     foodInfo: any;
-    // ***Add these props too? :
-    // food_name: string,
-    // calories: number,
-    // serving_size: number,
-    // total_fat: number,
-    // saturated_fat: number,
-    // cholesterol: number,
-    // sodium: number,
-    // total_carbohydrate: number,
-    // dietary_fiber: number,
-    // sugars: number,
+    // ***Add these props too? : 
+    // food_name: string, 
+    // calories: number, 
+    // serving_size: number, 
+    // total_fat: number, 
+    // saturated_fat: number, 
+    // cholesterol: number, 
+    // sodium: number, 
+    // total_carbohydrate: number, 
+    // dietary_fiber: number, 
+    // sugars: number, 
     // protein: number
+
 }
 
-const Modal = ({ showModal, onClose, foodInfo }: ModalProps ) => {
+const Modal = ({ showModal, onClose, onAddToGrid, foodInfo }: ModalProps ) => {
+    const [quantity, setQuantity] = useState<number>(1);
+    
     const handleClose = () => {
         onClose();
     }
+
+    const handleAddToGrid = () => {
+        const food = {
+          food_name: foodInfo.food_name,
+          quantity,
+          serving_size: foodInfo.serving_size,
+          calories: foodInfo.nf_calories,
+          total_fat: foodInfo.nf_total_fat,
+          protein: foodInfo.nf_protein
+        };
+        onAddToGrid(food);
+        // localStorage.setItem('foods', JSON.stringify([...foods, food]));
+        onClose();
+      };
   
     if ( !showModal ) return (<></>);
     return (
@@ -59,6 +77,10 @@ const Modal = ({ showModal, onClose, foodInfo }: ModalProps ) => {
                         <p>Dietary Fiber: <br /> { foodInfo.nf_dietary_fiber }g</p>
                         <p>Sugars: <br /> { foodInfo.nf_sugars }g</p>
                         <p>Protein: <br /> { foodInfo.nf_protein }g</p>
+                    </div>
+                    <div className="modal-footer">
+                        <button onClick={handleAddToGrid}>Add to Grid</button>
+                        <button onClick={onClose}>Cancel</button>
                     </div>
                     
                 </div>

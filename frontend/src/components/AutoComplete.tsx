@@ -9,9 +9,13 @@ const AutoComplete = ({ foods, onSelectFood }: AutoCompleteProps) => {
   }
 
   return (
-    <ul>
-      {foods.map((food) => (
-        <li key={food} onClick={() => onSelectFood(food)}>
+    <ul className="bg-white divide-y rounded-md shadow-lg">
+      {foods.map((food, index) => (
+        <li 
+          key={index}
+          onClick={() => onSelectFood(food)}
+          className=" pl-5 p-1"
+        >
           {food}
         </li>
       ))}

@@ -16,7 +16,7 @@ export const server_calls = {
         return data
     },
 
-    
+
     getNutritionInfo: async (food_name: string) => {
         const response = await fetch(`https://trackapi.nutritionix.com/v2/natural/nutrients?query=${ food_name }`, {
             method: 'POST',
@@ -32,11 +32,9 @@ export const server_calls = {
         });
 
         if (!response.ok) {
-            throw new Error("HTTP error / 404 Error")  //Change HTTP error / 404 Error??
+            throw new Error(`The food '${food_name}' does not exist.`)
         }
 
-        const data = await response.json()
-        console.log(data)
-        return data
+        return await response.json()
     }
 }
