@@ -72,21 +72,18 @@ const Food = () => {
     setWaterAmount(0);
   };
   
-  // useEffect(() => {
-  //   let newTotalCalories = 0;
-  //   let newTotalFat = 0;
-  //   let newTotalProtein = 0;
-  //   for (let i = 0; i < foodList.length; i++) {
-  //     const item = foodList[i];
-  //     const { calories, total_fat, protein } = item;
-  //     newTotalCalories += calories;
-  //     newTotalFat += total_fat;
-  //     newTotalProtein += protein;
-  //   }
-  //   setTotalCalories(Math.round(newTotalCalories));
-  //   setTotalFat(newTotalFat);
-  //   setTotalProtein(newTotalProtein);
-  // }, [foodList]);
+  useEffect(() => {
+    const storedFoodList = localStorage.getItem("foodList");
+    const storedWaterAmount = localStorage.getItem("waterAmount")
+    if (storedFoodList) {
+        setFoodList(JSON.parse(storedFoodList));
+    }
+    // if (storedWaterAmount) {
+    //   setFoodList(JSON.parse(storedWaterAmount));
+    // }
+    localStorage.setItem("foodList", JSON.stringify(foodList))
+    localStorage.setItem("waterAmount", JSON.stringify(waterAmount))
+  }, [])
 
   return (
     <div

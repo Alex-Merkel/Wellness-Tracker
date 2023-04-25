@@ -52,15 +52,6 @@ function Navbar() {
                             Food
                         </Link>
                         <Link
-                            to='/journal'
-                            onClick={ clicked }
-                            className='px-8 py-4 bg-green-500 text-green-200
-                            justify-center hover:text-white hover:bg-green-800
-                            flex place-items-center rounded-full'
-                        >
-                            Journal
-                        </Link>
-                        <Link
                             to='/account'
                             onClick={ clicked }
                             className='px-8 py-4 bg-green-500 text-green-200

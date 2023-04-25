@@ -58,9 +58,9 @@ const FoodGrid = ({ foodList, onRemove, onClear, onQuantityChange }: FoodGridPro
   const canAddMore = foodList.length < 20;
 
   return (
-    <div className="w-full max-w-4xl mx-auto mt-4">
+    <div className="w-full max-w-4xl mx-auto mt-12">
       <div className="bg-white border-2 border-black shadow">
-        <table className="w-full border-collapse ">
+        <table className="w-full border-collapse">
             <thead className="border-b-2 border-black">
                 <tr>
                     <th className="px-4 py-2 text-xl text-center border-b">Food Name</th>

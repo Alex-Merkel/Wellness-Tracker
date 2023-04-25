@@ -37,6 +37,28 @@ const UpdateUserInfo = (props: UpdateUserInfoProps) => {
         }
     }
 
+    // const handleDelete = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    //     event.preventDefault()
+    //     try {
+    //         const res = await fetch(`${baseURL}deleteuser`, {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             },
+    //             body: JSON.stringify({
+    //                 emailAddress: props.email
+    //             })
+    //         });
+    //         // const data = await res.json(); GET RID OF?
+    //         if (res.ok) {
+    //             props.onClose();
+    //             location.reload()
+    //         }
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // }
+
     const handleCancel = () => {
         props.onClose()
         location.reload()
@@ -95,6 +117,14 @@ const UpdateUserInfo = (props: UpdateUserInfoProps) => {
                         >
                             Cancel
                         </button>
+                        {/* <button
+                            className="px-8 py-4 bg-green-500 text-green-200
+                            justify-center hover:text-white hover:bg-green-800
+                            flex place-items-center rounded-full"
+                            onClick={handleDelete}
+                        >
+                            Delete
+                        </button> */}
                     </div>
                 </div>
             </div>

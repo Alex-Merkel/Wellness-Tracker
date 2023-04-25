@@ -57,8 +57,8 @@ const Modal = ({ showModal, onClose, onAddToGrid, foodInfo }: ModalProps ) => {
 
                 <div className="w-full flex flex-col">
                     <div className="flex justify-center">
-                        <div className="flex items-center">
-                            <h2 className="capitalize font-bold text-3xl w-32 mr-24">{foodInfo.food_name}</h2>
+                        <div className="flex text-center items-center">
+                            <h2 className="capitalize font-bold text-3xl w-32 mr-36">{foodInfo.food_name}</h2>
                             <img src={foodInfo.photo.thumb} alt={foodInfo.food_name} className="h-32 w-32 -mr-12"/>
                         </div>
                     </div>
@@ -75,7 +75,7 @@ const Modal = ({ showModal, onClose, onAddToGrid, foodInfo }: ModalProps ) => {
                     </div>
                     <div className="flex justify-center my-8">
                         <button
-                            className="px-8 py-4 bg-green-500 text-green-200
+                            className="mx-10 px-8 py-4 bg-green-500 text-green-200
                             justify-center hover:text-white hover:bg-green-800
                             flex place-items-center rounded-full"
                             onClick={handleAddToGrid}
@@ -83,7 +83,7 @@ const Modal = ({ showModal, onClose, onAddToGrid, foodInfo }: ModalProps ) => {
                             Add to Grid
                         </button>
                         <button
-                            className="mx-10 hover:bg-green-800 px-8 py-4 bg-green-500 text-green-200
+                            className="mx-16 hover:bg-green-800 px-8 py-4 bg-green-500 text-green-200
                             justify-center hover:text-white flex place-items-center
                             rounded-full"
                             onClick={onClose}

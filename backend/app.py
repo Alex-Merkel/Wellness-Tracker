@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
-import psycopg2
+# import psycopg2
 import uuid
 
 app = Flask(__name__)
@@ -38,10 +38,8 @@ def get_user():
 
 @app.route('/updateuser', methods=['PUT', 'POST'])
 def update_user():
-    # Get the user data from the request
     user_data = request.json
 
-    # Check if user exists in the database
     email_address = user_data['emailAddress']
     
     user = User.query.filter_by(email_address=email_address).first()
@@ -49,18 +47,15 @@ def update_user():
     if user is None:
         return jsonify({'success': False, 'error': 'User not found'})
 
-    # Update first name and/or last name if provided in the request
     if 'firstName' in user_data:
         user.first_name = user_data['firstName']
     if 'lastName' in user_data:
         user.last_name = user_data['lastName']
 
     try:
-        # Commit the transaction
         db.session.commit()
         return jsonify({'success': True})
     except Exception as e:
-        # Rollback the transaction on error
         db.session.rollback()
         return jsonify({'success': False, 'error': str(e)})
 
@@ -85,8 +80,18 @@ def add_user():
 
     return jsonify({'message': 'User added successfully'})
 
+# @app.route('/deleteuser', methods=["GET", "POST", "DELETE"])
+# def delete_user():
+#     email = request.json['emailAddress']
+#     user = User.query.filter_by(email_address=email).first()
+#     if user:
+#         db.session.delete(user)
+#         response = "User has been deleted"
+#     else:
+#         response = "Delete unsuccessful, user doesn't exist."
+#     return jsonify(response)
 
 
-# Running app
+
 if __name__ == '__main__':
     app.run(debug=True)
