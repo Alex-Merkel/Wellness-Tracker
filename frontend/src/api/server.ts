@@ -12,7 +12,6 @@ export const server_calls = {
         });
         
         const data = await response.json()
-        console.log(data)
         return data
     },
 

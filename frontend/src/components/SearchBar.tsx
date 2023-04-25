@@ -13,7 +13,6 @@ const SearchBar = ({ onAddFood }: SearchBarProps) => {
   const handleSelectFood = async (food_name: string) => {
     setSelectedFood(food_name);
     const result = await server_calls.getNutritionInfo(food_name);
-    console.log(result);
     onAddFood(result.foods[0]);
     setSelectedFood("")
     setAutoCompleteFoods([])
@@ -26,7 +25,6 @@ const SearchBar = ({ onAddFood }: SearchBarProps) => {
     }
     
     const data = await server_calls.getFoods(queryFood);
-    console.log(queryFood);
     setAutoCompleteFoods(
         Array.from(new Set(data.common
             .map((food: any) => food.food_name)
@@ -35,7 +33,6 @@ const SearchBar = ({ onAddFood }: SearchBarProps) => {
             ))
         )
     );
-    console.log(autoCompleteFoods);
   };
 
 
@@ -43,7 +40,6 @@ const SearchBar = ({ onAddFood }: SearchBarProps) => {
     event.preventDefault();
     try {
         const result = await server_calls.getNutritionInfo(selectedFood);
-        console.log(result);
         onAddFood(result.foods[0]);
     } catch (error:any) {
         console.error(error);

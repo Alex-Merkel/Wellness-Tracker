@@ -14,6 +14,7 @@ const FoodGrid = ({ foodList, onRemove, onClear, onQuantityChange }: FoodGridPro
   const [totalFat, setTotalFat] = useState<number>(0);
   const [totalProtein, setTotalProtein] = useState<number>(0);
 
+
   const handleRemove = (index: number) => {
     onRemove(index);
   };
@@ -43,19 +44,17 @@ const FoodGrid = ({ foodList, onRemove, onClear, onQuantityChange }: FoodGridPro
     let newTotalFat = 0;
     let newTotalProtein = 0;
     for (let i = 0; i < foodList.length; i++) {
-      newTotalCalories += foodList[i].calories * foodList[i].quantity;
-      newTotalFat += foodList[i].total_fat * foodList[i].quantity;
-      newTotalProtein += foodList[i].protein * foodList[i].quantity;
+      newTotalCalories += foodList[i].calories
+      newTotalFat += foodList[i].total_fat
+      newTotalProtein += foodList[i].protein
     }
     setTotalCalories(Math.round(newTotalCalories));
     setTotalFat(newTotalFat);
     setTotalProtein(newTotalProtein);
   
-    localStorage.setItem("foodList", JSON.stringify(foodList));
+    // localStorage.setItem("foodList", JSON.stringify(foodList));
   }, [foodList]);
   
-
-  // Limit the number of foods to 20
   const canAddMore = foodList.length < 20;
 
   return (
@@ -88,9 +87,9 @@ const FoodGrid = ({ foodList, onRemove, onClear, onQuantityChange }: FoodGridPro
                         className="w-16 border-gray-300 rounded-md text-sm text-center pl-3"
                         />
                     </td>
-                    <td className="px-4 py-2 text-center border-b">{food.calories}</td>
-                    <td className="px-4 py-2 text-center border-b">{food.total_fat}</td>
-                    <td className="px-4 py-2 text-center border-b">{food.protein}</td>
+                    <td className="px-4 py-2 text-center border-b">{ Math.round(food.calories) }</td>
+                    <td className="px-4 py-2 text-center border-b">{ food.total_fat.toFixed(2) }</td>
+                    <td className="px-4 py-2 text-center border-b">{ food.protein.toFixed(2) }</td>
                     <td className="px-4 py-2 text-center border-b">
                         <button
                         onClick={() => handleRemove(index)}

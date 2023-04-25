@@ -3,7 +3,7 @@ import Modal from '../components/Modal'
 import SearchBar from '../components/SearchBar'
 import FoodGrid from '../components/FoodGrid'
 import WaterTracker from '../components/WaterTracker'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 
 const Food = () => {
@@ -14,13 +14,10 @@ const Food = () => {
   const [waterUnit, setWaterUnit] = useState("L");
   
 
-
-
   const handleDisplayFood = (info: any) => {
     setFoodInfo(info)
     setShowModal(true)
   }
-
 
   const handleCloseModal = () => {
     setShowModal(false);
@@ -28,35 +25,33 @@ const Food = () => {
     // location.reload()
   }
 
-  // const foods = [...newFoodList]
 
   const handleAddFoodToGrid = (food: any, quantity: number) => {
     setFoodList([...foodList, { ...food, quantity }]),
     setShowModal(false);
-
   }
-  
   
   const handleRemove = (index: number) => {
     const updatedList = foodList.filter((_, i) => i !== index);
     setFoodList(updatedList);
   }
 
-  const handleClear =  () => {
+  const handleClear = () => {
     setFoodList([]);
-  }
+  };
 
   const handleQuantityChange = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
     const newQuantity = isNaN(parseInt(event.target.value)) ? 0 : parseInt(event.target.value);
+    const updatedFoodList = [...foodList];
     const updatedFood = { ...foodList[index] };
+    updatedFood.calories = Math.round(updatedFood.calories / updatedFood.quantity * newQuantity);
+    updatedFood.total_fat = updatedFood.total_fat.toFixed(2) / updatedFood.quantity * newQuantity;
+    updatedFood.protein = updatedFood.protein.toFixed(2) / updatedFood.quantity * newQuantity; 
     updatedFood.quantity = newQuantity;
-    updatedFood.calories = updatedFood.caloriesPerServing * newQuantity;
-    updatedFood.total_fat = updatedFood.totalFatPerServing * newQuantity;
-    updatedFood.protein = updatedFood.proteinPerServing * newQuantity;
-    const newFoodList = [...foodList];
-    newFoodList[index] = updatedFood;
-    setFoodList(newFoodList);
+    updatedFoodList[index] = updatedFood;
+    setFoodList(updatedFoodList);
   };
+  
 
   const foodGridProps = {
     foodList: foodList,
@@ -77,6 +72,22 @@ const Food = () => {
     setWaterAmount(0);
   };
   
+  // useEffect(() => {
+  //   let newTotalCalories = 0;
+  //   let newTotalFat = 0;
+  //   let newTotalProtein = 0;
+  //   for (let i = 0; i < foodList.length; i++) {
+  //     const item = foodList[i];
+  //     const { calories, total_fat, protein } = item;
+  //     newTotalCalories += calories;
+  //     newTotalFat += total_fat;
+  //     newTotalProtein += protein;
+  //   }
+  //   setTotalCalories(Math.round(newTotalCalories));
+  //   setTotalFat(newTotalFat);
+  //   setTotalProtein(newTotalProtein);
+  // }, [foodList]);
+
   return (
     <div
       style={{ backgroundImage: `url(${Background})`, height: '100vh' }}
