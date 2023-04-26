@@ -40,7 +40,7 @@ interface WaterTrackerProps {
                 Water Tracker:
             </label>
             <div className='text-sm font-bold' id='UnitsToAddText'>
-                Units to add:
+                Amount to add (and unit selecter):
             </div>
             <div className="flex flex-col items-center">
                 <div className="flex items-center mr-2">

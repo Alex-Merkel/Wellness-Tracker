@@ -3,7 +3,7 @@ import { useState } from "react";
 interface ModalProps {
     showModal?: boolean;
     onClose: () => void;
-    onAddToGrid: (food: any) => void;
+    onAddToGrid: any;
     foodInfo: any;
     // ***Add these props too? : 
     // food_name: string, 

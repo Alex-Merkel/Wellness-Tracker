@@ -22,8 +22,15 @@ class User(db.Model):
     def __repr__(self):
         return f'<User {self.email_address}>'
     
+class UserData(db.Model):
+    __tablename__ = 'user_data'
+    
+    email_address = db.Column(db.String(150), unique=True, nullable=False, primary_key=True)
+    food_list = db.Column(db.JSON, nullable=False)
+    water_amount = db.Column(db.Integer, nullable=False)
+    
   
-  
+# Server calls for user info(firstName, lastName, and emailAddress(from Auth0)):  
 @app.route('/checkuser', methods=["GET", "POST"])
 def get_user():
     email = request.json['emailAddress']
@@ -34,9 +41,7 @@ def get_user():
         response = {'isReturningUser': False}
     return jsonify(response)
 
-    
-
-@app.route('/updateuser', methods=['PUT', 'POST'])
+@app.route('/updateuser', methods=['PUT'])
 def update_user():
     user_data = request.json
 
@@ -59,8 +64,6 @@ def update_user():
         db.session.rollback()
         return jsonify({'success': False, 'error': str(e)})
 
-
-
 @app.route('/adduser', methods=['POST'])
 def add_user():
     user_data = request.json
@@ -80,17 +83,54 @@ def add_user():
 
     return jsonify({'message': 'User added successfully'})
 
-# @app.route('/deleteuser', methods=["GET", "POST", "DELETE"])
-# def delete_user():
-#     email = request.json['emailAddress']
-#     user = User.query.filter_by(email_address=email).first()
-#     if user:
-#         db.session.delete(user)
-#         response = "User has been deleted"
-#     else:
-#         response = "Delete unsuccessful, user doesn't exist."
-#     return jsonify(response)
+@app.route('/deleteuser', methods=["DELETE"])
+def delete_user():
+    email_address = request.json['email_address']
+    user = User.query.filter_by(email_address=email_address).first()
+    if user:
+        db.session.delete(user)
+        db.session.commit()
+        response = "User has been deleted"
+    else:
+        response = "Delete unsuccessful, user doesn't exist."
+    return jsonify(response)
 
+
+# Data server calls (foodList & waterAmount for Food.tsx page):
+@app.route('/getdata', methods=["GET", "POST"])
+def get_data():
+    email = request.json['emailAddress']
+    user = UserData.query.filter_by(email_address=email).first()
+    if user:
+        response = {'foodList': user.food_list, 'waterAmount': user.water_amount}
+    else:
+        response = "User and/or data not found"
+    return jsonify(response)
+
+@app.route('/savedata', methods=['GET', 'POST' ,'PUT'])
+def save_data():
+    user_data = request.json
+
+    email_address = user_data['email_address']
+    food_list = user_data.get('food_list', [])
+    water_amount = user_data.get('water_amount', 0)
+
+    user_data = UserData.query.filter_by(email_address=email_address).first()
+
+    if user_data is None:
+        user_data = UserData(
+            email_address=email_address,
+            food_list=food_list,
+            water_amount=water_amount,
+        )
+        db.session.add(user_data)
+    else:
+        user_data.food_list = food_list
+        user_data.water_amount = water_amount
+
+    db.session.commit()
+
+    return jsonify({'message': 'User data saved successfully'})
 
 
 if __name__ == '__main__':

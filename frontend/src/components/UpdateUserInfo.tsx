@@ -17,7 +17,7 @@ const UpdateUserInfo = (props: UpdateUserInfoProps) => {
         event.preventDefault()
         try {
             const res = await fetch(`${baseURL}updateuser`, {
-                method: 'POST',
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -27,7 +27,6 @@ const UpdateUserInfo = (props: UpdateUserInfoProps) => {
                     emailAddress: props.email
                 })
             });
-            // const data = await res.json(); GET RID OF?
             if (res.ok) {
                 props.onClose();
                 location.reload()
@@ -37,27 +36,27 @@ const UpdateUserInfo = (props: UpdateUserInfoProps) => {
         }
     }
 
-    // const handleDelete = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    //     event.preventDefault()
-    //     try {
-    //         const res = await fetch(`${baseURL}deleteuser`, {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json'
-    //             },
-    //             body: JSON.stringify({
-    //                 emailAddress: props.email
-    //             })
-    //         });
-    //         // const data = await res.json(); GET RID OF?
-    //         if (res.ok) {
-    //             props.onClose();
-    //             location.reload()
-    //         }
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // }
+    const handleDelete = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        event.preventDefault()
+        try {
+            const res = await fetch(`${baseURL}deleteuser`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email_address: props.email
+                })
+            });
+            const data = await res.json();
+            if (res.ok) {
+                props.onClose();
+                location.reload()
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     const handleCancel = () => {
         props.onClose()
@@ -102,7 +101,7 @@ const UpdateUserInfo = (props: UpdateUserInfoProps) => {
                     </div>
                     <div className="flex justify-center">
                         <button
-                            className="px-8 py-4 bg-green-500 text-green-200
+                            className="px-8 py-4 mx-2 bg-green-500 text-green-200
                             justify-center hover:text-white hover:bg-green-800
                             flex place-items-center rounded-full"
                             onClick={handleSave}
@@ -110,21 +109,21 @@ const UpdateUserInfo = (props: UpdateUserInfoProps) => {
                             Save
                         </button>
                         <button
-                            className="px-8 py-4 bg-green-500 text-green-200
+                            className="px-8 py-4 mx-2 bg-green-500 text-green-200
                             justify-center hover:text-white hover:bg-green-800
                             flex place-items-center rounded-full"
                             onClick={handleCancel}
                         >
                             Cancel
                         </button>
-                        {/* <button
-                            className="px-8 py-4 bg-green-500 text-green-200
+                        <button
+                            className="px-8 py-4 mx-2 bg-green-500 text-green-200
                             justify-center hover:text-white hover:bg-green-800
                             flex place-items-center rounded-full"
                             onClick={handleDelete}
                         >
                             Delete
-                        </button> */}
+                        </button>
                     </div>
                 </div>
             </div>

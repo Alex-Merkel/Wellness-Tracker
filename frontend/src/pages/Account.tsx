@@ -21,6 +21,7 @@ function Account() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (user?.email) {
@@ -31,6 +32,7 @@ function Account() {
 
   const fetchUserData = async (emailAddress: string) => {
     try {
+      setLoading(true);
       const res = await fetch(`${baseURL}checkuser`, {
         method: 'POST',
         headers: {
@@ -46,6 +48,8 @@ function Account() {
       } 
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -59,43 +63,48 @@ function Account() {
         <h3 className="p-5 text-4xl font-bold mb-12 bg-white bg-opacity-60 text-black rounded">
           Welcome back!
         </h3>
-        <div className="text-3xl mb-8">Here are your account details:</div>
-        {isLoading && <div>Loading ...</div>}
+        <div className="text-3xl mb-8" id='AccountDetailsHeaderText'>Here are your account details:</div>
+        {isLoading && <div></div>}
         {isAuthenticated && !isLoading && (
           <div>
-            {isReturningUser ? (
-              <div className="flex flex-col justify-center items-center text-white">
-                <div className="flex justify-between" id='AccountText'>
-                  <div className="flex flex-col mr-24">
-                    <h5 className="text-2xl my-3">First Name:</h5>
-                    <h5 className="text-2xl my-3">Last Name:</h5>
-                    <h5 className="text-2xl my-3">Email Address:</h5>
+            {loading && <div className="fixed top-0 left-0 right-0 bottom-0 bg-gray-900 bg-opacity-50 text-4xl text-white"></div>}
+            {!loading && (
+              <div>
+                {isReturningUser ? (
+                  <div className="flex flex-col justify-center items-center text-white">
+                    <div className="flex justify-between" id='AccountText'>
+                      <div className="flex flex-col mr-24">
+                        <h5 className="text-2xl my-3">First Name:</h5>
+                        <h5 className="text-2xl my-3">Last Name:</h5>
+                        <h5 className="text-2xl my-3">Email Address:</h5>
+                      </div>
+                      <div className="flex flex-col items-end">
+                        <h5 className="text-2xl my-3">{firstName}</h5>
+                        <h5 className="text-2xl my-3">{lastName}</h5>
+                        <h5 className="text-2xl my-3">{emailAddress}</h5>
+                      </div>
+                    </div>
+                    <button 
+                      className="px-8 py-4 mt-8 bg-green-500 text-green-200
+                      justify-center hover:text-white flex place-items-center
+                      rounded-full" 
+                      onClick={() => setShowUpdateUserInfo(true)}
+                    >
+                      Update
+                    </button>
+                    {showUpdateUserInfo && (
+                      <UpdateUserInfo 
+                        onClose={() => setIsReturningUser(true)}
+                        email={emailAddress} 
+                        firstName={firstName} 
+                        lastName={lastName} 
+                      />
+                    )}
                   </div>
-                  <div className="flex flex-col items-end">
-                    <h5 className="text-2xl my-3">{firstName}</h5>
-                    <h5 className="text-2xl my-3">{lastName}</h5>
-                    <h5 className="text-2xl my-3">{emailAddress}</h5>
-                  </div>
-                </div>
-                <button 
-                  className="px-8 py-4 mt-8 bg-green-500 text-green-200
-                  justify-center hover:text-white flex place-items-center
-                  rounded-full" 
-                  onClick={() => setShowUpdateUserInfo(true)}
-                >
-                  Update
-                </button>
-                {showUpdateUserInfo && (
-                  <UpdateUserInfo 
-                    onClose={() => setIsReturningUser(true)}
-                    email={emailAddress} 
-                    firstName={firstName} 
-                    lastName={lastName} 
-                  />
+                ) : (
+                  <UserInfo onClose={() => setIsReturningUser(true)} email={emailAddress} />
                 )}
               </div>
-            ) : (
-              <UserInfo onClose={() => setIsReturningUser(true)} email={emailAddress} />
             )}
           </div>
         )}
