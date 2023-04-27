@@ -22,8 +22,9 @@ function Home() {
               </p>
             </div>
             <div 
-              className='px-8 py-4 bg-green-500 text-green-200 justify-center
-              hover:text-white flex place-items-center rounded-full'>
+              className='px-8 py-4 mx-2 bg-green-500 text-green-200
+              justify-center hover:text-white hover:bg-green-800
+              flex place-items-center rounded-full'>
               <LoginButton/>
               <LogoutButton/>
             </div>

@@ -60,6 +60,12 @@
     1px 1px 0 white;
 }
 
+/* #nav-link {
+  px-8 py-4 mx-2 bg-green-500 text-green-200
+                            justify-center hover:text-white hover:bg-green-800
+                            flex place-items-center rounded-full
+} */
+
 /* #root {
   max-width: 1280px;
   margin: 0 auto;
