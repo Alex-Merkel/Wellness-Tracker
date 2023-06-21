@@ -4,19 +4,9 @@ import Home from './pages/Home'
 import Navbar from './components/Navbar'
 import Food from './pages/Food'
 import Account from './pages/Account'
-import { disableReactDevTools } from '@fvilers/disable-react-devtools';
 import { Auth0ProviderWithRedirectCallback, ProtectedRoute } from './authentication/AuthChecker'
 import './App.css'
 
-
-// if (process.env.NODE_ENV === 'production') {
-//   disableReactDevTools();
-// }
-
-// type AppProps = {};
-
-
-// redirect_uri: window.location.origin
 
 function App(): any {
 
