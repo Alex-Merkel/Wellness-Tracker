@@ -1,5 +1,4 @@
 import { HashRouter, Routes, Route } from 'react-router-dom'
-// import { useState } from 'react'
 import Home from './pages/Home'
 import Navbar from './components/Navbar'
 import Food from './pages/Food'

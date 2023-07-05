@@ -1,7 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
-# import psycopg2
 import uuid
 
 app = Flask(__name__)
@@ -28,6 +27,7 @@ class UserData(db.Model):
     email_address = db.Column(db.String(150), unique=True, nullable=False, primary_key=True)
     food_list = db.Column(db.JSON, nullable=False)
     water_amount = db.Column(db.Integer, nullable=False)
+    water_unit = db.Column(db.String, nullable=False)
     
   
 # Server calls for user info(firstName, lastName, and emailAddress(from Auth0)):  
@@ -96,13 +96,15 @@ def delete_user():
     return jsonify(response)
 
 
-# Data server calls (foodList & waterAmount for Food.tsx page):
+# Data server calls (foodList, waterAmount, and waterUnit for Food.tsx page):
 @app.route('/getdata', methods=["GET", "POST"])
 def get_data():
     email = request.json['emailAddress']
     user = UserData.query.filter_by(email_address=email).first()
     if user:
-        response = {'foodList': user.food_list, 'waterAmount': user.water_amount}
+        response = {'foodList': user.food_list,
+                    'waterAmount': user.water_amount,
+                    'waterUnit': user.water_unit}
     else:
         response = "User and/or data not found"
     return jsonify(response)
@@ -114,6 +116,7 @@ def save_data():
     email_address = user_data['email_address']
     food_list = user_data.get('food_list', [])
     water_amount = user_data.get('water_amount', 0)
+    water_unit = user_data.get('water_unit', 'L')
 
     user_data = UserData.query.filter_by(email_address=email_address).first()
 
@@ -122,11 +125,13 @@ def save_data():
             email_address=email_address,
             food_list=food_list,
             water_amount=water_amount,
+            water_unit=water_unit
         )
         db.session.add(user_data)
     else:
         user_data.food_list = food_list
         user_data.water_amount = water_amount
+        user_data.water_unit = water_unit
 
     db.session.commit()
 

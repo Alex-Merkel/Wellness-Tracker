@@ -19,6 +19,7 @@ interface WaterTrackerProps {
 
     const [newAmount, setNewAmount] = useState<number>(waterAmount);
 
+    
     const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const newAmount = isNaN(parseInt(event.target.value)) ? 0 : parseInt(event.target.value);
         setNewAmount(newAmount);

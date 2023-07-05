@@ -5,19 +5,6 @@ interface ModalProps {
     onClose: () => void;
     onAddToGrid: any;
     foodInfo: any;
-    // ***Add these props too? : 
-    // food_name: string, 
-    // calories: number, 
-    // serving_size: number, 
-    // total_fat: number, 
-    // saturated_fat: number, 
-    // cholesterol: number, 
-    // sodium: number, 
-    // total_carbohydrate: number, 
-    // dietary_fiber: number, 
-    // sugars: number, 
-    // protein: number
-
 }
 
 const Modal = ({ showModal, onClose, onAddToGrid, foodInfo }: ModalProps ) => {
@@ -37,7 +24,6 @@ const Modal = ({ showModal, onClose, onAddToGrid, foodInfo }: ModalProps ) => {
           protein: foodInfo.nf_protein
         };
         onAddToGrid(food);
-        // localStorage.setItem('foods', JSON.stringify([...foods, food]));
         onClose();
       };
   
@@ -49,7 +35,7 @@ const Modal = ({ showModal, onClose, onAddToGrid, foodInfo }: ModalProps ) => {
             justify-center align-middle bg-gray-300 bg-opacity-90'
         >
             <div
-                className='max-w-600px w-3/5 fixed flex z-1 m-64 p-5 bg-white shadow-xl rounded'
+                className='max-w-lg fixed flex z-1 mt-20 p-5 bg-white shadow-xl rounded'
                 onClick={(e) => {
                     e.stopPropagation()
                 }}

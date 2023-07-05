@@ -19,7 +19,7 @@ const Food = () => {
   const [emailAddress, setEmailAddress] = useState("dev@dev.com");
   const { user } = useAuth0();
   
-  
+  // user?.email in brackets line 26?
   useEffect(() => {
     setEmailAddress(user?.email || "")
     handleGetData()
@@ -87,6 +87,7 @@ const Food = () => {
 
   const handleWaterUnitChange = (newUnit: string | React.ChangeEvent<HTMLSelectElement>) => {
     setWaterUnit(typeof newUnit === 'string' ? newUnit : newUnit.target.value);
+    handleSaveData({ water_unit: newUnit })
   };
   
   const handleGetData = async () => {
@@ -103,6 +104,7 @@ const Food = () => {
     if (response.ok) {
       setFoodList(result.foodList)
       setWaterAmount(result.waterAmount)
+      setWaterUnit(result.waterUnit)
     } else {
       console.log("error")
     }
@@ -117,6 +119,7 @@ const Food = () => {
       body: JSON.stringify({
         food_list: foodList,
         water_amount: waterAmount,
+        water_unit: waterUnit,
         email_address: emailAddress,
         ...data,
       }),
@@ -128,8 +131,10 @@ const Food = () => {
 
   return (
     <div
-      style={{ backgroundImage: `url(${Background})`, height: '100vh' }}
-      className="flex flex-row justify-between mx-auto bg-cover bg-fixed"
+      style={{ 
+        backgroundImage: `url(${Background})`,
+      }}
+      className="bg-fixed bg-cover"
     >
       <div className="flex flex-col items-start w-full">
         <div className="flex items-center justify-evenly w-full mt-40">

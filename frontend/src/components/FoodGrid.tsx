@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-import Modal from "./Modal";
-
 
 interface FoodGridProps {
   foodList: any[];
@@ -35,30 +33,26 @@ const FoodGrid = ({ foodList, onRemove, onClear, onQuantityChange }: FoodGridPro
 
   // Calculate the total values for all foods
   useEffect(() => {
-    const storedFoodList = localStorage.getItem("foodList");
-    if (storedFoodList) {
-    //   setFoodList(JSON.parse(storedFoodList));
-    }
-  
     let newTotalCalories = 0;
     let newTotalFat = 0;
     let newTotalProtein = 0;
-    for (let i = 0; i < foodList.length; i++) {
-      newTotalCalories += foodList[i].calories
-      newTotalFat += foodList[i].total_fat
-      newTotalProtein += foodList[i].protein
+
+    for (const food of foodList) {
+      newTotalCalories += food.calories;
+      newTotalFat += food.total_fat;
+      newTotalProtein += food.protein;
     }
+
     setTotalCalories(Math.round(newTotalCalories));
     setTotalFat(newTotalFat);
     setTotalProtein(newTotalProtein);
   
-    // localStorage.setItem("foodList", JSON.stringify(foodList));
   }, [foodList]);
   
   const canAddMore = foodList.length < 20;
 
   return (
-    <div className="w-full max-w-4xl mx-auto mt-12">
+    <div className="w-full max-w-4xl mx-auto m-12">
       <div className="bg-white border-2 border-black shadow">
         <table className="w-full border-collapse">
             <thead className="border-b-2 border-black">
