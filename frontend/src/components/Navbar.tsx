@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import LoginButton from '../authentication/Login';
 import LogoutButton from '../authentication/Logout';
 
@@ -21,52 +21,50 @@ function Navbar() {
           Wellness Tracker
         </Link>
       </div>
-      <div className="block md:hidden">
+      <div className="md:hidden">
         <button
           onClick={dropDown}
-          className="flex items-center px-4 py-3 mr-2 text-teal-200 border rounded border-green-300 hover:text-white hover:border-white"
+          className="navbar-toggler flex items-center px-4 py-3 mr-2 text-teal-200 border rounded border-green-300 hover:text-white hover:border-white"
         >
           <i className="fa-solid fa-bars"></i>
         </button>
       </div>
-      <div className="w-full block md:flex md:items-center md:w-auto">
-        {isVisible || !isVisible ? (
-          <div className="flex flex-col md:flex-row md:items-center">
-            <Link
-              to="/"
-              onClick={hideDropdown}
-              className="nav-link px-8 py-4 bg-green-500 text-green-200 justify-center hover:text-white hover:bg-green-800 flex place-items-center rounded-full my-2 md:my-0 mx-2"
-            >
-              Home
-            </Link>
-            <Link
-              to="/food"
-              onClick={hideDropdown}
-              className="nav-link px-8 py-4 bg-green-500 text-green-200 justify-center hover:text-white hover:bg-green-800 flex place-items-center rounded-full my-2 md:my-0 mx-2"
-            >
-              Tracker
-            </Link>
-            <Link
-              to="/account"
-              onClick={hideDropdown}
-              className="nav-link px-8 py-4 bg-green-500 text-green-200 justify-center hover:text-white hover:bg-green-800 flex place-items-center rounded-full my-2 md:my-0 mx-2"
-            >
-              Account
-            </Link>
-            <button
-              onClick={hideDropdown}
-              className="nav-link px-8 py-4 bg-green-500 text-green-200 justify-center hover:text-white hover:bg-green-800 flex place-items-center rounded-full my-2 md:my-0 mx-2"
-            >
-              <div className="flex items-center">
-                <LoginButton />
-                <LogoutButton />
-              </div>
-            </button>
-          </div>
-        ) : null}
+      <div className={`w-full md:flex md:items-center md:w-auto ${isVisible ? 'block' : 'hidden'}`}>
+        <div className="flex flex-col md:flex-row md:items-center" id="navmenu">
+          <Link
+            to="/"
+            onClick={hideDropdown}
+            className="nav-link text-green-200 justify-center hover:text-white flex my-2 md:my-0 mx-10"
+          >
+            Home
+          </Link>
+          <Link
+            to="/food"
+            onClick={hideDropdown}
+            className="nav-link text-green-200 justify-center hover:text-white flex my-2 md:my-0 mx-10"
+          >
+            Tracker
+          </Link>
+          <Link
+            to="/account"
+            onClick={hideDropdown}
+            className="nav-link text-green-200 justify-center hover:text-white flex my-2 md:my-0 mx-10"
+          >
+            Account
+          </Link>
+          <button
+            onClick={hideDropdown}
+            className="nav-link text-green-200 justify-center hover:text-white flex my-2 md:my-0 mx-10"
+          >
+            <div className="flex items-center">
+              <LoginButton />
+              <LogoutButton />
+            </div>
+          </button>
+        </div>
       </div>
     </nav>
   );
-};
+}
 
-export default Navbar
+export default Navbar;

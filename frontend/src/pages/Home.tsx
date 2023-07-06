@@ -16,9 +16,8 @@ function Home() {
                 well-being. Whether you want to familiarize yourself with the 
                 nutritional information about specific foods, track the foods you 
                 consume, or keep track of your water intake,
-                we've got your back. To get started, please log in or sign up.
-                With our easy-to-use interface, you'll be well on your way to 
-                achieving your wellness objectives in no time!
+                we've got your back. With our easy-to-use interface, you'll be
+                well on your way to achieving your wellness objectives in no time!
               </p>
             </div>
             <div 

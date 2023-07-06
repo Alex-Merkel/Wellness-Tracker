@@ -155,7 +155,7 @@ const Food = () => {
             foodInfo={foodInfo}
           />
         )}
-        <div className="w-full max-w-4xl mx-auto mt-4">
+        <div className="w-full max-w-4xl mx-auto mt-8 mb-80">
           <FoodGrid {...foodGridProps} />
         </div>
       </div>
