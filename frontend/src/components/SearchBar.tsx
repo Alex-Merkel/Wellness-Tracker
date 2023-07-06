@@ -65,7 +65,7 @@ const SearchBar = ({ onAddFood }: SearchBarProps) => {
             onKeyUp={(e) => handleAutoComplete(e.currentTarget.value)}
           />
           <button type="submit" className="ml-2 px-2 rounded-full bg-green-600 border-2 border-black hover:border-white hover:text-white">
-            Add
+            Select
           </button>
         </div>
         <AutoComplete foods={autoCompleteFoods} onSelectFood={handleSelectFood} />

@@ -37,10 +37,12 @@ const FoodGrid = ({ foodList, onRemove, onClear, onQuantityChange }: FoodGridPro
     let newTotalFat = 0;
     let newTotalProtein = 0;
 
-    for (const food of foodList) {
-      newTotalCalories += food.calories;
-      newTotalFat += food.total_fat;
-      newTotalProtein += food.protein;
+    if (foodList?.length) {
+      for (const food of foodList) {
+        newTotalCalories += food.calories;
+        newTotalFat += food.total_fat;
+        newTotalProtein += food.protein;
+      }
     }
 
     setTotalCalories(Math.round(newTotalCalories));
@@ -49,7 +51,6 @@ const FoodGrid = ({ foodList, onRemove, onClear, onQuantityChange }: FoodGridPro
   
   }, [foodList]);
   
-  const canAddMore = foodList.length < 20;
 
   return (
     <div className="w-full max-w-4xl mx-auto m-12">
@@ -59,7 +60,6 @@ const FoodGrid = ({ foodList, onRemove, onClear, onQuantityChange }: FoodGridPro
                 <tr>
                     <th className="px-4 py-2 text-xl text-center border-b">Food Name</th>
                     <th className="px-4 py-2 text-xl text-center border-b">Quantity</th>
-
                     <th className="px-4 py-2 text-xl text-center border-b">Calories</th>
                     <th className="px-4 py-2 text-xl text-center border-b">Total Fat</th>
                     <th className="px-4 py-2 text-xl text-center border-b">Protein</th>
@@ -67,7 +67,8 @@ const FoodGrid = ({ foodList, onRemove, onClear, onQuantityChange }: FoodGridPro
                 </tr>
             </thead>
             <tbody>
-                {foodList.map((food, index) => (
+              {foodList?.length > 0 ? (
+                foodList.map((food, index) => (
                     <tr key={index} className={index % 2 === 0 ? "bg-gray-100" : ""}>
                     <td className="px-4 py-2 text-center border-b">
                         {food.food_name.charAt(0).toUpperCase() + food.food_name.slice(1)}
@@ -78,7 +79,7 @@ const FoodGrid = ({ foodList, onRemove, onClear, onQuantityChange }: FoodGridPro
                         min="1"
                         value={food.quantity}
                         onChange={(e) => handleQuantityChange(index, Number(e.target.value))}
-                        className="w-16 border-gray-300 rounded-md text-sm text-center pl-3"
+                        className="w-16 border-gray-300 border-2 rounded-md text-sm text-center pl-3"
                         />
                     </td>
                     <td className="px-4 py-2 text-center border-b">{ Math.round(food.calories) }</td>
@@ -93,7 +94,10 @@ const FoodGrid = ({ foodList, onRemove, onClear, onQuantityChange }: FoodGridPro
                         </button>
                     </td>
                     </tr>
-                ))}
+                ))
+              ) : (
+                null
+              )}
                 <tr className="bg-white border-t-2 border-black">
                     <td className="pl-9 py-2 text-xl font-bold" colSpan={2}>
                         Totals:

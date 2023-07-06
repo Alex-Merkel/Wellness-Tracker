@@ -115,7 +115,7 @@ def save_data():
 
     email_address = user_data['email_address']
     food_list = user_data.get('food_list', [])
-    water_amount = user_data.get('water_amount', 0)
+    water_amount = user_data.get('water_amount') or 0
     water_unit = user_data.get('water_unit', 'L')
 
     user_data = UserData.query.filter_by(email_address=email_address).first()
@@ -136,6 +136,19 @@ def save_data():
     db.session.commit()
 
     return jsonify({'message': 'User data saved successfully'})
+
+
+@app.route('/deletedata', methods=["DELETE"])
+def delete_data():
+    email_address = request.json['email_address']
+    user_data = UserData.query.filter_by(email_address=email_address).first()
+    if user_data:
+        db.session.delete(user_data)
+        db.session.commit()
+        response = "User has been deleted"
+    else:
+        response = "Delete unsuccessful, user doesn't exist."
+    return jsonify(response)
 
 
 if __name__ == '__main__':

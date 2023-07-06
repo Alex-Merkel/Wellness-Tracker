@@ -31,7 +31,7 @@ const Modal = ({ showModal, onClose, onAddToGrid, foodInfo }: ModalProps ) => {
     return (
         <div
             onClick={ handleClose }
-            className='fixed w-full h-full flex overflow-auto
+            className='fixed w-full h-full mt-10 flex overflow-auto
             justify-center align-middle bg-gray-300 bg-opacity-90'
         >
             <div

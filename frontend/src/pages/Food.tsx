@@ -16,14 +16,24 @@ const Food = () => {
   const [foodList, setFoodList] = useState<any[]>([]);
   const [waterAmount, setWaterAmount] = useState(0);
   const [waterUnit, setWaterUnit] = useState("L");
-  const [emailAddress, setEmailAddress] = useState("dev@dev.com");
+  const [emailAddress, setEmailAddress] = useState("");
   const { user } = useAuth0();
   
-  // user?.email in brackets line 26?
   useEffect(() => {
-    setEmailAddress(user?.email || "")
-    handleGetData()
-  }, [])
+    setEmailAddress(user?.email || "");
+  
+    const fetchData = async () => {
+      if (emailAddress) {
+        const result: any = await handleGetData();
+        if (result.foodList && result.waterAmount === undefined && result.waterUnit === undefined) {
+          saveUserDataAndGetData();
+        }
+      }
+    };
+  
+    fetchData();
+  }, [user?.email, emailAddress]);
+  
 
 
   const handleDisplayFood = (info: any) => {
@@ -91,24 +101,31 @@ const Food = () => {
   };
   
   const handleGetData = async () => {
-    const response = await fetch(`${baseURL}getdata`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        emailAddress: emailAddress,
-      }),
-    });
-    const result = await response.json();
-    if (response.ok) {
-      setFoodList(result.foodList)
-      setWaterAmount(result.waterAmount)
-      setWaterUnit(result.waterUnit)
-    } else {
-      console.log("error")
+    try {
+      const response = await fetch(`${baseURL}getdata`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          emailAddress: emailAddress,
+        }),
+      });
+  
+      if (response.ok) {
+        const result = await response.json();
+        setFoodList(result.foodList || []);
+        setWaterAmount(result.waterAmount || 0);
+        setWaterUnit(result.waterUnit || 'L');
+        return result;
+      } else {
+        console.log("Error: ", response.status);
+      }
+    } catch (error) {
+      console.log("Error: ", error);
     }
   };
+  
 
   const handleSaveData = async (data: any) => {
     const response = await fetch(`${baseURL}savedata`, {
@@ -125,7 +142,12 @@ const Food = () => {
       }),
     });
     const result = await response.json();
-      console.log(result);
+    console.log(result);
+  };
+
+  const saveUserDataAndGetData = async () => {
+    await handleSaveData({});
+    handleGetData();
   };
 
 

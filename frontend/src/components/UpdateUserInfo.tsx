@@ -37,26 +37,40 @@ const UpdateUserInfo = (props: UpdateUserInfoProps) => {
     }
 
     const handleDelete = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        event.preventDefault()
+        event.preventDefault();
         try {
-            const res = await fetch(`${baseURL}deleteuser`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    email_address: props.email
+            const res = await Promise.all([
+                fetch(`${baseURL}deleteuser`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email_address: props.email
+                    })
+                }),
+                fetch(`${baseURL}deletedata`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email_address: props.email
+                    })
                 })
-            });
-            const data = await res.json();
-            if (res.ok) {
-                props.onClose();
-                location.reload()
+            ]);
+      
+            const data = await Promise.all(res.map((response) => response.json()));
+                if (res.every((response) => response.ok)) {
+                    props.onClose();
+                    location.reload();
             }
         } catch (error) {
             console.error(error);
         }
-    }
+    };
+      
+      
 
     const handleCancel = () => {
         props.onClose()
