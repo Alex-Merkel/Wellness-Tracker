@@ -2,7 +2,7 @@
   "name": "frontend",
   "private": true,
   "version": "0.1.0",
-  "proxy": "http://localhost:5000/", 
+  "proxy": "https://dainty-taffy-82ce20.netlify.app/", 
   "type": "module",
   "scripts": {
     "dev": "vite",

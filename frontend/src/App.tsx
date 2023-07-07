@@ -12,8 +12,8 @@ function App(): any {
   return (
     <HashRouter>
       <Auth0ProviderWithRedirectCallback
-        domain="dev-rorjkfiimt8iqckg.us.auth0.com"
-        clientId="Mu6n2InZgyAmJzTiN9ofS6630k3TfODW"
+        domain={process.env.REACT_APP_AUTH0_DOMAIN}
+        clientId={process.env.REACT_APP_AUTH0_CLIENT_ID}
         authorizationParams={{
           redirect_uri: "https://silly-gnome-1bafd2.netlify.app/account",
         }}

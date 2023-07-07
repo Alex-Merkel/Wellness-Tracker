@@ -5,9 +5,9 @@ export const server_calls = {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'x-app-id': '2ba8edb0',
-                'x-app-key': '519d673e9153e0f0402e9adbc826e66f',
-                'x-remote-user-id': '0',
+                'x-app-id': 'process.env.REACT_APP_NUTRITIONIX_APP_ID',
+                'x-app-key': 'process.env.REACT_APP_NUTRITIONIX_APP_KEY',
+                'x-remote-user-id': 'process.env.REACT_APP_NUTRITIONIX_REMOTE_USER_ID',
             },
         });
         
@@ -21,9 +21,9 @@ export const server_calls = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'x-app-id': '2ba8edb0',
-                'x-app-key': '519d673e9153e0f0402e9adbc826e66f',
-                'x-remote-user-id': '0',
+                'x-app-id': 'process.env.REACT_APP_NUTRITIONIX_APP_ID',
+                'x-app-key': 'process.env.REACT_APP_NUTRITIONIX_APP_KEY',
+                'x-remote-user-id': 'process.env.REACT_APP_NUTRITIONIX_REMOTE_USER_ID',
             },
             body: JSON.stringify({
                 query: food_name

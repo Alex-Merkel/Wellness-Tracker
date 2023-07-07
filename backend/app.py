@@ -1,14 +1,17 @@
 from flask import Flask, jsonify, request
+from dotenv import load_dotenv
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 import uuid
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://oieqoshs:Wpv2tC_JhfqNXcJwPL3algLp0XEyE8e6@raja.db.elephantsql.com/oieqoshs'
+load_dotenv()
+
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URI']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 db = SQLAlchemy(app)
 CORS(app)
-
 
 class User(db.Model):
     __tablename__ = 'app_user'
