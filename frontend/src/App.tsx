@@ -15,7 +15,7 @@ function App(): any {
         domain={process.env.REACT_APP_AUTH0_DOMAIN}
         clientId={process.env.REACT_APP_AUTH0_CLIENT_ID}
         authorizationParams={{
-          redirect_uri: "https://silly-gnome-1bafd2.netlify.app/account",
+          redirect_uri: "https://quiet-entremet-f8601f.netlify.app/account",
         }}
       >
       <Navbar />
