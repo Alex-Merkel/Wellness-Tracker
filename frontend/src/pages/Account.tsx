@@ -12,7 +12,7 @@ interface UserData {
   email_address?: string;
 }
 
-const baseURL = "http://localhost:5000/"
+const baseURL = "https://silly-gnome-1bafd2.netlify.app/"
 
 function Account() {
   const { user, isAuthenticated, isLoading } = useAuth0();

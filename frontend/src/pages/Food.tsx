@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react'
 import { useAuth0, User } from '@auth0/auth0-react';
 
 
-const baseURL = "http://localhost:5000/"
+const baseURL = "https://silly-gnome-1bafd2.netlify.app/"
 
 
 const Food = () => {

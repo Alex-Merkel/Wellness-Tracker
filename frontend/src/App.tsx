@@ -15,7 +15,7 @@ function App(): any {
         domain="dev-rorjkfiimt8iqckg.us.auth0.com"
         clientId="Mu6n2InZgyAmJzTiN9ofS6630k3TfODW"
         authorizationParams={{
-          redirect_uri: "http://localhost:5173/account",
+          redirect_uri: "https://silly-gnome-1bafd2.netlify.app/account",
         }}
       >
       <Navbar />

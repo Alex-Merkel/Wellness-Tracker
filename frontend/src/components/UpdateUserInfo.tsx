@@ -7,7 +7,7 @@ type UpdateUserInfoProps = {
   lastName: string;
 };
 
-const baseURL = "http://localhost:5000/"
+const baseURL = "https://silly-gnome-1bafd2.netlify.app/"
 
 const UpdateUserInfo = (props: UpdateUserInfoProps) => {
     const [firstName, setFirstName] = useState(props.firstName);
