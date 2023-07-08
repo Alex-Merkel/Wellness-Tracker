@@ -15,7 +15,7 @@ function App(): any {
         domain='dev-rorjkfiimt8iqckg.us.auth0.com'
         clientId='Mu6n2InZgyAmJzTiN9ofS6630k3TfODW'
         authorizationParams={{
-          redirect_uri: "https://quiet-entremet-f8601f.netlify.app/account",
+          redirect_uri: "https://quiet-entremet-f8601f.netlify.app",
         }}
       >
       <Navbar />
