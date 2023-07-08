@@ -21,7 +21,7 @@ function App(): any {
       <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/food" element={<Food />} />
+          <Route path="/food" element={<ProtectedRoute component={Food} />} />
           <Route path="/account" element={<ProtectedRoute component={Account} />} />
         </Routes>
       </Auth0ProviderWithRedirectCallback>
