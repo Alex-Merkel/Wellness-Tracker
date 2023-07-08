@@ -10,7 +10,7 @@ import './App.css'
 function App(): any {
 
   return (
-    <HashRouter>
+    <HashRouter basename='/'>
       <Auth0ProviderWithRedirectCallback
         domain={process.env.REACT_APP_AUTH0_DOMAIN}
         clientId={process.env.REACT_APP_AUTH0_CLIENT_ID}
