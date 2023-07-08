@@ -12,8 +12,8 @@ function App(): any {
   return (
     <HashRouter basename='/'>
       <Auth0ProviderWithRedirectCallback
-        domain={process.env.REACT_APP_AUTH0_DOMAIN}
-        clientId={process.env.REACT_APP_AUTH0_CLIENT_ID}
+        domain='dev-rorjkfiimt8iqckg.us.auth0.com'
+        clientId='Mu6n2InZgyAmJzTiN9ofS6630k3TfODW'
         authorizationParams={{
           redirect_uri: "https://quiet-entremet-f8601f.netlify.app/account",
         }}
