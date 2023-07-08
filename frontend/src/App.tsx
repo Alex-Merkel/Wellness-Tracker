@@ -10,7 +10,7 @@ import './App.css'
 function App(): any {
 
   return (
-    <HashRouter basename='/'>
+    <HashRouter>
       <Auth0ProviderWithRedirectCallback
         domain='dev-rorjkfiimt8iqckg.us.auth0.com'
         clientId='Mu6n2InZgyAmJzTiN9ofS6630k3TfODW'
