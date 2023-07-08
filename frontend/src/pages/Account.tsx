@@ -12,7 +12,7 @@ interface UserData {
   email_address?: string;
 }
 
-const baseURL = "https://quiet-entremet-f8601f.netlify.app/"
+const baseURL = "https://wellness-tracker.onrender.com/"
 
 function Account() {
   const { user, isAuthenticated, isLoading } = useAuth0();

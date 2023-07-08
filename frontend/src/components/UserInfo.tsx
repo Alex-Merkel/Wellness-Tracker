@@ -5,7 +5,7 @@ type UserInfoProps = {
   email: string;
 };
 
-const baseURL = "https://quiet-entremet-f8601f.netlify.app/"
+const baseURL = "https://wellness-tracker.onrender.com/"
 
 const UserInfo = (props: UserInfoProps) => {
     const [firstName, setFirstName] = useState('');

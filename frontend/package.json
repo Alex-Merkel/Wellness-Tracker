@@ -2,7 +2,7 @@
   "name": "frontend",
   "private": true,
   "version": "0.1.0",
-  "proxy": "https://dainty-taffy-82ce20.netlify.app/", 
+  "proxy": "https://quiet-entremet-f8601f.netlify.app/", 
   "type": "module",
   "scripts": {
     "dev": "vite",

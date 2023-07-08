@@ -7,7 +7,7 @@ type UpdateUserInfoProps = {
   lastName: string;
 };
 
-const baseURL = "https://quiet-entremet-f8601f.netlify.app/"
+const baseURL = "https://wellness-tracker.onrender.com/"
 
 const UpdateUserInfo = (props: UpdateUserInfoProps) => {
     const [firstName, setFirstName] = useState(props.firstName);
