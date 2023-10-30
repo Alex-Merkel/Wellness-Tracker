@@ -106,9 +106,11 @@ def get_data():
     email = request.json['emailAddress']
     user = UserData.query.filter_by(email_address=email).first()
     if user:
-        response = {'foodList': user.food_list,
-                    'waterAmount': user.water_amount,
-                    'waterUnit': user.water_unit}
+        response = {
+            'foodList': user.food_list,
+            'waterAmount': user.water_amount,
+            'waterUnit': user.water_unit
+        }
     else:
         response = "User and/or data not found"
     return jsonify(response)
@@ -157,3 +159,5 @@ def delete_data():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+

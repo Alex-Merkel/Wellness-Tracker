@@ -23,6 +23,7 @@ function Account() {
   const [emailAddress, setEmailAddress] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // See if we have user email, if so, set it
   useEffect(() => {
     if (user?.email) {
       fetchUserData(user.email);
