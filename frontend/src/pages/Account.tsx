@@ -31,6 +31,7 @@ function Account() {
     }
   }, [user]);
 
+  // Checking if user is returning or not by referencing email from Auth0 to DB
   const fetchUserData = async (emailAddress: string) => {
     try {
       setLoading(true);
@@ -54,7 +55,7 @@ function Account() {
     }
   }
 
-
+  // Returning profile data if user is returning, if not asking for user data
   return (
     <div
       style={{ backgroundImage: `url(${Background})` }}
