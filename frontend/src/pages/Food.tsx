@@ -21,7 +21,7 @@ const Food = () => {
   
   useEffect(() => {
     setEmailAddress(user?.email || "");
-  
+    // If Email, get data. If no data, set data for food list and waterAmount
     const fetchData = async () => {
       if (emailAddress) {
         const result: any = await handleGetData();
