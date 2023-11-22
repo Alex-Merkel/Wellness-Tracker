@@ -46,24 +46,27 @@ const Food = () => {
     setFoodInfo(null)
   }
 
-
+  // Add food to food grid, keep previous foodData as well
   const handleAddFoodToGrid = (food: any) => {
     setFoodList(prevFoodList => [...prevFoodList, { ...food, quantity: 1 }]),
     setShowModal(false);
     handleSaveData({ food_list: [...foodList, { ...food, quantity: 1 }] });
   }
   
+  // Remove food from foodGrid when user selects remove
   const handleRemove = (index: number) => {
     const updatedList = foodList.filter((_, i) => i !== index);
     setFoodList(updatedList);
     handleSaveData({ food_list: updatedList });
   };
 
+  // Remove ALL food from foodGrid when user selects
   const handleClear = () => {
     setFoodList([]);
     handleSaveData({ food_list: [] });
-  };
+  }; 
 
+  // Handle foodData update when user changes quantity
   const handleQuantityChange = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
     const newQuantity = isNaN(parseInt(event.target.value)) ? 0 : parseInt(event.target.value);
     const updatedFoodList = [...foodList];
@@ -85,16 +88,19 @@ const Food = () => {
     onQuantityChange: handleQuantityChange,
   };
 
+  // Handle waterAmount quantity change
   const handleWaterAmountChange = (newAmount: number) => {
     setWaterAmount(waterAmount + newAmount);
     handleSaveData({ water_amount: waterAmount + newAmount });
   };
 
+  // Reset water amount to 0
   const handleResetWater = () => {
     setWaterAmount(0);
     handleSaveData({ water_amount: 0 });
   };
 
+  // Handle water unit changes between L / C / oz
   const handleWaterUnitChange = (newUnit: string | React.ChangeEvent<HTMLSelectElement>) => {
     setWaterUnit(typeof newUnit === 'string' ? newUnit : newUnit.target.value);
     handleSaveData({ water_unit: newUnit })
