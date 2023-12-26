@@ -124,6 +124,6 @@ This project is licensed under the MIT License. While this license allows users 
 ## Contact
 
 For inquiries or suggestions, feel free to reach out:
-- **Email:** [Email](alexander.j.merkel@gmail.com)
+- **Email:** alexander.j.merkel@gmail.com
 - **GitHub:** [GitHub](https://github.com/Alex-Merkel)
 - **LinkedIn:** [LinkedIn](https://www.linkedin.com/in/alex-merkel-8750b0274/)
