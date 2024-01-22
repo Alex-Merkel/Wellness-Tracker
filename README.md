@@ -72,13 +72,13 @@ npm run dev
 
 2. **Key Features Overview:**
    - **Food Intake Tracking:**
-       - Click on "Tracker" on Navbar
+       - Click on "Tracker" on the Navbar
        - Click into food searchbar (says "Enter food here...")
        - Start typing food name and select via clicking or by pressing enter once entire food name is entered
        - You will be at the nutrition page for your selected food, if you would like to add it to your food grid, click "Add to Grid"
        - You can now change the quantity of food items in your grid as well as remove individual food items or clear the food list
    - **Water Intake Tracking:** Access the "Water Tracker" and input your water consumption.
-   -   - Click on "Tracker" on Navbar
+   -   - Click on "Tracker" on the Navbar
        - Click into water tracker bar (says "0")
        - Click "Add" to add that amount to your total water intake
        - Change measurement option by clicking the bar to the right of the water tracker bar (default says "L")
